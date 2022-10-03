@@ -1,5 +1,6 @@
 const { CONTINENTS } = require("./lib/continents")
-const ENTITIES = require("../data/dxcc.json")
+
+const ENTITIES = require("./data/dxccByCode.json")
 
 module.exports = {
   CONTINENTS,

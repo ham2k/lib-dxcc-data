@@ -56,5 +56,11 @@ describe("preprocessDXCCData", () => {
     expect(dxcc[414].name).toEqual("DR of Congo-Kinshasa")
     expect(dxcc[414].shortName).toEqual("DR Congo-Kinshasa")
     expect(dxcc[414].qrzName).toEqual("Congo, Dem. Republic of")
+
+    // WAE entity data from BigCTY should not polute the original entity
+    expect(dxcc[259].dxccName).toEqual("Svalbard")
+    expect(dxcc[259].fullName).toEqual("Svalbard")
+    expect(dxcc[259].name).toEqual("Svalbard")
+    expect(dxcc[259].shortName).toEqual("Svalbard")
   })
 })

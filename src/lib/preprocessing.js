@@ -1,16 +1,16 @@
-const { parse } = require("csv/dist/cjs/sync.cjs")
-// const { parse } = require("csv/sync")
+// const { parse } = require("csv/dist/cjs/sync.cjs") // Use this line when running tests
+const { parse } = require("csv/sync") // Use this line normally
+
 const CTYData = require("../../../country-file/data/bigcty.json")
 const QRZNames = require("../../data/qrz-names.json")
 const ExtraInfo = require("../../data/extra-info.json")
 
 const CTYbyCode = {}
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-Object.entries(CTYData).forEach(([prefix, cty]) => {
-  CTYbyCode[cty.dxccCode] = cty
+Object.entries(CTYData.entities).forEach(([prefix, cty]) => {
+  if (!cty.isWAE) CTYbyCode[cty.dxccCode] = cty
 })
 
-Object.values(CTYData)
 function preprocessDXCCData(dxccCSV) {
   const dxcc = {}
 
@@ -25,13 +25,14 @@ function preprocessDXCCData(dxccCSV) {
       console.log(record)
     }
     dxcc[code] = {
+      source: "DXCC",
       dxccName: record.name,
       dxccCode: code,
       continents: record.continent.split(","),
       ituZones: record.itu.split(",").map((zone) => Number.parseInt(zone)),
       cqZones: record.cq.split(",").map((zone) => Number.parseInt(zone)),
-      deleted: record.deleted,
-      traffic: record.thirdPartyTraffic,
+      deleted: record.deleted === "Y",
+      traffic: record.thirdPartyTraffic === "Y",
       start: record.validStart,
       end: record.validEnd,
       flag: record.flag,
@@ -40,6 +41,8 @@ function preprocessDXCCData(dxccCSV) {
       regex: record.regex,
       prefixes: record.prefix.split(","),
     }
+
+    dxcc[code].entityPrefix = dxcc[code].prefixes[0] || `${record.deleted === "Y" ? "deleted" : "dxcc"}-${code}`
 
     dxcc[code].name = dxcc[code].dxccName
 
@@ -59,9 +62,12 @@ function preprocessDXCCData(dxccCSV) {
 
     if (QRZNames[code] !== record.name) dxcc[code].qrzName = QRZNames[code]
 
-    if (CTYbyCode[code]) dxcc[code] = { ...dxcc[code], ...CTYbyCode[code] }
+    if (CTYbyCode[code]) {
+      dxcc[code] = { ...CTYbyCode[code], ...dxcc[code] } // CTY info should not override
+      dxcc[code].entityPrefix = CTYbyCode[code].entityPrefix // except for entityPrefix, for which we trust CTY over other sources
+    }
 
-    if (ExtraInfo[code]) dxcc[code] = { ...dxcc[code], ...ExtraInfo[code] }
+    if (ExtraInfo[code]) dxcc[code] = { ...dxcc[code], ...ExtraInfo[code] } // Extra info should override
   })
 
   return dxcc
