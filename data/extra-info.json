@@ -1,8 +1,8 @@
 {
   "4": {
-    "dxccName": "Agalega & St. Brandon Is.",
-    "fullName": "Agalega & Saint Brandon Islands",
-    "name": "Agalega & St. Brandon Is.",
+    "dxccName": "Agalega and St. Brandon Is.",
+    "fullName": "Agalega and Saint Brandon Islands",
+    "name": "Agalega and St. Brandon Is.",
     "shortName": "Agalega & St. Brandon",
     "lotwName": "AGALEGA & SAINT BRANDON ISLANDS",
     "clublogName": "AGALEGA & SAINT BRANDON ISLANDS"
@@ -10,6 +10,9 @@
   "16": {
     "name": "New Zealand Subantarctic Is.",
     "shortName": "NZ Subantarctic Is."
+  },
+  "17": {
+    "name": "Aves Island"
   },
   "31": {
     "dxccName": "C. Kiribati (British Phoenix Is.)",
@@ -43,6 +46,14 @@
     "name": "St. Martin",
     "shortName": "St. Martin"
   },
+  "217": {
+    "alternate": "Desventuradas Islands",
+    "name": "San Felix Is.",
+    "fullName": "San Felix Islands",
+    "name": "San Felix Is.",
+    "lotwName": "SAN FELIX ISLAND",
+    "clublogName": "SAN FELIX ISLANDS"
+  },
   "230": {
     "shortName": "Germany"
   },
@@ -52,7 +63,9 @@
     "clublogName": "SOV MILITARY ORDER OF MALTA"
   },
   "283": {
-    "shortName": "UK SBA on Cyprus"
+    "shortName": "UK Bases on Cyprus",
+    "name": "UK Sovereign Bases on Cyprus",
+    "fullName": "UK Sovereign Base Areas on Cyprus"
   },
   "289": {
     "name": "UN Headquarters",
@@ -70,7 +83,8 @@
     "clublogName": "WESTERN KIRIBATI"
   },
   "344": {
-    "shortName": "North Korea"
+    "shortName": "North Korea",
+    "name": "D.P.R. of Korea"
   },
   "412": {
     "name": "Congo-Brazzaville",
@@ -101,6 +115,9 @@
   },
   "504": {
     "shortName": "Slovakia"
+  },
+  "506": {
+    "name": "Scarborough Reef"
   },
   "511": {
     "lotwName": "TIMOR - LESTE",

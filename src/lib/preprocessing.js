@@ -1,7 +1,7 @@
 // const { parse } = require("csv/dist/cjs/sync.cjs") // Use this line when running tests
 const { parse } = require("csv/sync") // Use this line normally
 
-const CTYData = require("../../../country-file/data/bigcty.json")
+const CTYData = require("../../../country-file/src/data/bigcty.json")
 const QRZNames = require("../../data/qrz-names.json")
 const ExtraInfo = require("../../data/extra-info.json")
 
@@ -44,7 +44,25 @@ function preprocessDXCCData(dxccCSV) {
 
     dxcc[code].entityPrefix = dxcc[code].prefixes[0] || `${record.deleted === "Y" ? "deleted" : "dxcc"}-${code}`
 
+    dxcc[code].shortName = dxcc[code].dxccName
+      .replace(" Islands", " Is.")
+      .replace(" Island", " I.")
+      .replace("Saint ", "St. ")
+      .replace("East ", "E. ")
+      .replace("West ", "W. ")
+      .replace("Central ", "C. ")
+      .replace("Republic ", "Rep. ")
+      .replace(" and ", " & ")
+
     dxcc[code].name = dxcc[code].dxccName
+      .replace(" Islands", " Is.")
+      .replace(" Island", " I.")
+      .replace("St. ", "Saint ")
+      .replace("E. ", "East ")
+      .replace("W. ", "West ")
+      .replace("C. ", "Central ")
+      .replace("Rep. ", "Republic ")
+      .replace(" & ", " and ")
 
     dxcc[code].fullName = dxcc[code].dxccName
       .replace(" I.", " Island")
@@ -55,8 +73,8 @@ function preprocessDXCCData(dxccCSV) {
       .replace("W. ", "West ")
       .replace("C. ", "Central ")
       .replace("Rep. ", "Republic ")
+      .replace(" & ", " and ")
 
-    dxcc[code].shortName = dxcc[code].name
     dxcc[code].lotwName = dxcc[code].fullName.toUpperCase()
     dxcc[code].clublogName = dxcc[code].lotwName
 
