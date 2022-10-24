@@ -2,7 +2,7 @@
   "4": {
     "dxccName": "Agalega and St. Brandon Is.",
     "fullName": "Agalega and Saint Brandon Islands",
-    "name": "Agalega and St. Brandon Is.",
+    "name": "Agalega and Saint Brandon Is.",
     "shortName": "Agalega & St. Brandon",
     "lotwName": "AGALEGA & SAINT BRANDON ISLANDS",
     "clublogName": "AGALEGA & SAINT BRANDON ISLANDS"
@@ -12,7 +12,9 @@
     "shortName": "NZ Subantarctic Is."
   },
   "17": {
-    "name": "Aves Island"
+    "fullName": "Aves Island",
+    "name": "Aves I.",
+    "shortName": "Aves I."
   },
   "31": {
     "dxccName": "C. Kiribati (British Phoenix Is.)",
@@ -43,14 +45,13 @@
     "shortName": "Yemen"
   },
   "213": {
-    "name": "St. Martin",
+    "name": "Saint Martin",
     "shortName": "St. Martin"
   },
   "217": {
     "alternate": "Desventuradas Islands",
     "name": "San Felix Is.",
     "fullName": "San Felix Islands",
-    "name": "San Felix Is.",
     "lotwName": "SAN FELIX ISLAND",
     "clublogName": "SAN FELIX ISLANDS"
   },
@@ -61,6 +62,10 @@
     "shortName": "SMO of Malta",
     "lotwName": "SOVEREIGN MILITARY ORDER OF MALTA",
     "clublogName": "SOV MILITARY ORDER OF MALTA"
+  },
+  "253": {
+    "name": "Saint Peter and Saint Paul Is",
+    "shortName": "St. Peter and St. Paul Is"
   },
   "283": {
     "shortName": "UK Bases on Cyprus",
@@ -100,8 +105,8 @@
   "490": {
     "dxccName": "Banaba I. (Ocean I.)",
     "fullName": "Banaba Island (Ocean Island)",
-    "name": "Banaba Island",
-    "shortName": "Banaba",
+    "name": "Banaba I.",
+    "shortName": "Banaba I.",
     "lotwName": "BANABA ISLAND",
     "clublogName": "BANABA ISLAND"
   },
@@ -128,7 +133,8 @@
     "shortName": "St. Barths"
   },
   "521": {
-    "name": "Republic of South Sudan",
+    "fullName": "Republic of South Sudan",
+    "name": "South Sudan",
     "shortName": "South Sudan"
   },
   "522": {
