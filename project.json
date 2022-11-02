@@ -1,5 +1,5 @@
 {
-  "root": "libs/data/dxcc",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/data/dxcc/src",
   "projectType": "library",
   "targets": {
@@ -22,9 +22,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/data/dxcc"],
+      "outputs": ["{workspaceRoot}/coverage/libs/data/dxcc"],
       "options": {
-        "jestConfig": "libs/data/dxcc/jest.config.js",
+        "jestConfig": "libs/data/dxcc/jest.config.ts",
         "passWithNoTests": true
       }
     }
