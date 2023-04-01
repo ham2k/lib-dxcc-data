@@ -1,13 +1,13 @@
 // const { parse } = require("csv/dist/cjs/sync.cjs") // Use this line when running tests
 const { parse } = require("csv/sync") // Use this line normally
 
-const CTYData = require("../../../country-file/src/data/bigcty.json")
+const CountryFiles = require("@ham2k/lib-country-files/builtinData")
 const QRZNames = require("../../data/qrz-names.json")
 const ExtraInfo = require("../../data/extra-info.json")
 
 const CTYbyCode = {}
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-Object.entries(CTYData.entities).forEach(([prefix, cty]) => {
+Object.entries(CountryFiles.CTYData.entities).forEach(([prefix, cty]) => {
   if (!cty.isWAE) CTYbyCode[cty.dxccCode] = cty
 })
 

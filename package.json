@@ -1,9 +1,13 @@
 {
-  "name": "@ham2k/data/dxcc",
+  "name": "@ham2k/lib-dxcc-data",
   "version": "0.0.1",
   "type": "commonjs",
   "devDependencies": {
-    "csv": "^6.0.5"
+    "csv": "^6.0.5",
+    "@ham2k/lib-country-files": "^0.0.1"
+  },
+  "exports": {
+    ".": "./src/index.js"
   },
   "scripts": {
     "generate": "node ./scripts/generate.js"
