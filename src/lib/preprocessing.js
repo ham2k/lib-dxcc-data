@@ -1,17 +1,16 @@
 // const { parse } = require("csv/dist/cjs/sync.cjs") // Use this line when running tests
-const { parse } = require("csv/sync") // Use this line normally
+const { parse } = require('csv/sync') // Use this line normally
 
-const CountryFiles = require("@ham2k/lib-country-files/builtinData")
-const QRZNames = require("../../data/qrz-names.json")
-const ExtraInfo = require("../../data/extra-info.json")
+const { CountryFiles } = require('@ham2k/lib-country-files/builtinData')
+const QRZNames = require('../../data/qrz-names.json')
+const ExtraInfo = require('../../data/extra-info.json')
 
 const CTYbyCode = {}
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 Object.entries(CountryFiles.CTYData.entities).forEach(([prefix, cty]) => {
   if (!cty.isWAE) CTYbyCode[cty.dxccCode] = cty
 })
 
-function preprocessDXCCData(dxccCSV) {
+function preprocessDXCCData (dxccCSV) {
   const dxcc = {}
 
   const records = parse(dxccCSV, { columns: true, skip_empty_lines: true })
@@ -20,60 +19,60 @@ function preprocessDXCCData(dxccCSV) {
     // console.log(record)
     const code = Number.parseInt(record.entityCode)
     if (dxcc[code]) {
-      console.log("Duplicate entity code", code)
+      console.log('Duplicate entity code', code)
       console.log(dxcc[code])
       console.log(record)
     }
     dxcc[code] = {
-      source: "DXCC",
+      source: 'DXCC',
       dxccName: record.name,
       dxccCode: code,
-      continents: record.continent.split(","),
-      ituZones: record.itu.split(",").map((zone) => Number.parseInt(zone)),
-      cqZones: record.cq.split(",").map((zone) => Number.parseInt(zone)),
-      deleted: record.deleted === "Y",
-      traffic: record.thirdPartyTraffic === "Y",
+      continents: record.continent.split(','),
+      ituZones: record.itu.split(',').map((zone) => Number.parseInt(zone)),
+      cqZones: record.cq.split(',').map((zone) => Number.parseInt(zone)),
+      deleted: record.deleted === 'Y',
+      traffic: record.thirdPartyTraffic === 'Y',
       start: record.validStart,
       end: record.validEnd,
       flag: record.flag,
-      countryCode: record.countryCode == "ZZ" ? "" : record.countryCode.toLowerCase(),
+      countryCode: record.countryCode === 'ZZ' ? '' : record.countryCode.toLowerCase(),
       notes: record.notes,
       regex: record.regex,
-      prefixes: record.prefix.split(","),
+      prefixes: record.prefix.split(',')
     }
 
-    dxcc[code].entityPrefix = dxcc[code].prefixes[0] || `${record.deleted === "Y" ? "deleted" : "dxcc"}-${code}`
+    dxcc[code].entityPrefix = dxcc[code].prefixes[0] || `${record.deleted === 'Y' ? 'deleted' : 'dxcc'}-${code}`
 
     dxcc[code].shortName = dxcc[code].dxccName
-      .replace(" Islands", " Is.")
-      .replace(" Island", " I.")
-      .replace("Saint ", "St. ")
-      .replace("East ", "E. ")
-      .replace("West ", "W. ")
-      .replace("Central ", "C. ")
-      .replace("Republic ", "Rep. ")
-      .replace(" and ", " & ")
+      .replace(' Islands', ' Is.')
+      .replace(' Island', ' I.')
+      .replace('Saint ', 'St. ')
+      .replace('East ', 'E. ')
+      .replace('West ', 'W. ')
+      .replace('Central ', 'C. ')
+      .replace('Republic ', 'Rep. ')
+      .replace(' and ', ' & ')
 
     dxcc[code].name = dxcc[code].dxccName
-      .replace(" Islands", " Is.")
-      .replace(" Island", " I.")
-      .replace("St. ", "Saint ")
-      .replace("E. ", "East ")
-      .replace("W. ", "West ")
-      .replace("C. ", "Central ")
-      .replace("Rep. ", "Republic ")
-      .replace(" & ", " and ")
+      .replace(' Islands', ' Is.')
+      .replace(' Island', ' I.')
+      .replace('St. ', 'Saint ')
+      .replace('E. ', 'East ')
+      .replace('W. ', 'West ')
+      .replace('C. ', 'Central ')
+      .replace('Rep. ', 'Republic ')
+      .replace(' & ', ' and ')
 
     dxcc[code].fullName = dxcc[code].dxccName
-      .replace(" I.", " Island")
-      .replace(" Is.", " Islands")
-      .replace(" HQ", " Headquarters")
-      .replace("St. ", "Saint ")
-      .replace("E. ", "East ")
-      .replace("W. ", "West ")
-      .replace("C. ", "Central ")
-      .replace("Rep. ", "Republic ")
-      .replace(" & ", " and ")
+      .replace(' I.', ' Island')
+      .replace(' Is.', ' Islands')
+      .replace(' HQ', ' Headquarters')
+      .replace('St. ', 'Saint ')
+      .replace('E. ', 'East ')
+      .replace('W. ', 'West ')
+      .replace('C. ', 'Central ')
+      .replace('Rep. ', 'Republic ')
+      .replace(' & ', ' and ')
 
     dxcc[code].lotwName = dxcc[code].fullName.toUpperCase()
     dxcc[code].clublogName = dxcc[code].lotwName
@@ -92,5 +91,5 @@ function preprocessDXCCData(dxccCSV) {
 }
 
 module.exports = {
-  preprocessDXCCData,
+  preprocessDXCCData
 }

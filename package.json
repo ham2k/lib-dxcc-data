@@ -1,15 +1,21 @@
 {
   "name": "@ham2k/lib-dxcc-data",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "commonjs",
   "devDependencies": {
-    "csv": "^6.0.5",
-    "@ham2k/lib-country-files": "^0.0.1"
+    "@ham2k/lib-country-files": "~0.0.3",
+    "csv": "~6.2.8",
+    "jest": "~29.5.0",
+    "standard": "~17.0.0"
   },
   "exports": {
     ".": "./src/index.js"
   },
   "scripts": {
-    "generate": "node ./scripts/generate.js"
+    "generate": "node ./scripts/generate.js",
+    "test": "jest"
+  },
+  "standard": {
+    "env": [ "jest" ]
   }
 }
