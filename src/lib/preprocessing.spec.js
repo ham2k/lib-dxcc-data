@@ -1,9 +1,8 @@
-const { preprocessDXCCData } = require('./preprocessing')
-const fs = require('fs')
-const path = require('path')
+import { preprocessDXCCData } from './preprocessing'
+import fs from 'fs'
 
 /* eslint-disable n/handle-callback-err */
-const dxccCSV = fs.readFileSync(path.join(__dirname, '../../data/dxcc-2020-02.csv'), 'utf8', (err, data) => data)
+const dxccCSV = fs.readFileSync('data/dxcc-2020-02.csv', 'utf8', (err, data) => data)
 
 describe('preprocessDXCCData', () => {
   it('should work', () => {

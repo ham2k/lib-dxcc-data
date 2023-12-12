@@ -1,16 +1,16 @@
 // const { parse } = require("csv/dist/cjs/sync.cjs") // Use this line when running tests
-const { parse } = require('csv/sync') // Use this line normally
+import { parse } from 'csv/sync' // Use this line normally
 
-const { CountryFiles } = require('@ham2k/lib-country-files/builtinData')
-const QRZNames = require('../../data/qrz-names.json')
-const ExtraInfo = require('../../data/extra-info.json')
+import { CTYData } from '@ham2k/lib-country-files'
+import QRZNames from '../../data/qrz-names.json' assert { type: 'json' }
+import ExtraInfo from '../../data/extra-info.json' assert { type: 'json' }
 
 const CTYbyCode = {}
-Object.entries(CountryFiles.CTYData.entities).forEach(([prefix, cty]) => {
+Object.entries(CTYData.entities).forEach(([prefix, cty]) => {
   if (!cty.isWAE) CTYbyCode[cty.dxccCode] = cty
 })
 
-function preprocessDXCCData (dxccCSV) {
+export function preprocessDXCCData (dxccCSV) {
   const dxcc = {}
 
   const records = parse(dxccCSV, { columns: true, skip_empty_lines: true })
@@ -90,6 +90,3 @@ function preprocessDXCCData (dxccCSV) {
   return dxcc
 }
 
-module.exports = {
-  preprocessDXCCData
-}

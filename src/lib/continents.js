@@ -1,4 +1,4 @@
-const CONTINENTS = {
+export const CONTINENTS = {
   AF: 'Africa',
   AS: 'Asia',
   EU: 'Europe',
@@ -6,8 +6,4 @@ const CONTINENTS = {
   OC: 'Oceania',
   SA: 'South America',
   AN: 'Antarctica'
-}
-
-module.exports = {
-  CONTINENTS
 }

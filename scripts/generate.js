@@ -1,11 +1,10 @@
-const fs = require('fs')
-const path = require('path')
-const { preprocessDXCCData } = require('../src/lib/preprocessing')
+import fs from 'fs'
+import { preprocessDXCCData } from '../src/lib/preprocessing.js'
 
 console.log('Generating DXCC json')
 
 /* eslint-disable n/handle-callback-err */
-const dxccCSV = fs.readFileSync(path.join(__dirname, '../data/dxcc-2020-02.csv'), 'utf8', (err, data) => data)
+const dxccCSV = fs.readFileSync('data/dxcc-2020-02.csv', 'utf8', (err, data) => data)
 
 const dxcc = preprocessDXCCData(dxccCSV)
 
