@@ -15,15 +15,11 @@ Object.values(dxcc).forEach((entity) => {
   }
 })
 
-fs.writeFileSync(path.join(__dirname, '../src/data/dxccByCode.json'), JSON.stringify(dxcc), 'utf8')
-fs.writeFileSync(path.join(__dirname, '../src/data/dxcc.json'), JSON.stringify(Object.values(dxcc)), 'utf8')
+fs.writeFileSync('src/data/dxccByCode.json', JSON.stringify(dxcc), 'utf8')
+fs.writeFileSync('src/data/dxcc.json', JSON.stringify(Object.values(dxcc)), 'utf8')
 
-fs.writeFileSync(
-  path.join(__dirname, '../src/data/dxccCurrent.json'),
-  JSON.stringify(Object.values(currentDXCC)),
-  'utf8'
-)
-fs.writeFileSync(path.join(__dirname, '../src/data/dxccByPrefix.json'), JSON.stringify(currentDXCC), 'utf8')
+fs.writeFileSync('src/data/dxccCurrent.json', JSON.stringify(Object.values(currentDXCC)), 'utf8')
+fs.writeFileSync('src/data/dxccByPrefix.json', JSON.stringify(currentDXCC), 'utf8')
 
 console.log('DXCC Entities written to data/dxcc.json, dxccByCode.json, dxccCurrent.json and dxccByPrefix.json')
 console.log('')

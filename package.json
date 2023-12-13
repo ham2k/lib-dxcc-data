@@ -4,10 +4,10 @@
   "type": "module",
   "main": "./src/index.js",
   "devDependencies": {
-    "@ham2k/lib-country-files": "~0.8.0",
-    "csv": "~6.2.8",
-    "jest": "~29.5.0",
-    "standard": "~17.0.0"
+    "@ham2k/lib-country-files": "~0.8",
+    "csv": "~6",
+    "jest": "~29",
+    "standard": "~17"
   },
   "exports": {
     ".": "./src/index.js"
