@@ -1,10 +1,10 @@
 {
   "name": "@ham2k/lib-dxcc-data",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "main": "./src/index.js",
   "devDependencies": {
-    "@ham2k/lib-country-files": "~0.8",
+    "@ham2k/lib-country-files": "~0.9",
     "csv": "~6",
     "jest": "~29",
     "standard": "~17"

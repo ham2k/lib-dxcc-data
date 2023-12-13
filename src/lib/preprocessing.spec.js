@@ -24,8 +24,8 @@ describe('preprocessDXCCData', () => {
     // Automatic replacement of some abbreviations
     expect(dxcc[460].dxccName).toEqual('Rotuma Island')
     expect(dxcc[460].fullName).toEqual('Rotuma Island')
-    expect(dxcc[460].name).toEqual('Rotuma Island')
-    expect(dxcc[460].shortName).toEqual('Rotuma Island')
+    expect(dxcc[460].name).toEqual('Rotuma I.')
+    expect(dxcc[460].shortName).toEqual('Rotuma I.')
     expect(dxcc[460].clublogName).toEqual('ROTUMA ISLAND')
 
     // Overrides from extra-info.json

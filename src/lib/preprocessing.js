@@ -1,12 +1,15 @@
 // const { parse } = require("csv/dist/cjs/sync.cjs") // Use this line when running tests
 import { parse } from 'csv/sync' // Use this line normally
 
-import { CTYData } from '@ham2k/lib-country-files'
-import QRZNames from '../../data/qrz-names.json' assert { type: 'json' }
-import ExtraInfo from '../../data/extra-info.json' assert { type: 'json' }
+import { BIGCTY } from '@ham2k/lib-country-files'
+
+import { createRequire } from "node:module"
+const require = createRequire(import.meta.url)
+const QRZNames = require('../../data/qrz-names.json')
+const ExtraInfo = require('../../data/extra-info.json')
 
 const CTYbyCode = {}
-Object.entries(CTYData.entities).forEach(([prefix, cty]) => {
+Object.entries(BIGCTY.entities).forEach(([prefix, cty]) => {
   if (!cty.isWAE) CTYbyCode[cty.dxccCode] = cty
 })
 
