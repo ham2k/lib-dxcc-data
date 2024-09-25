@@ -7,6 +7,7 @@ import { createRequire } from "node:module"
 const require = createRequire(import.meta.url)
 const QRZNames = require('../../data/qrz-names.json')
 const ExtraInfo = require('../../data/extra-info.json')
+const ITUZonesToRegions = require('../../data/itu-zones-to-regions.json')
 
 const CTYbyCode = {}
 Object.entries(BIGCTY.entities).forEach(([prefix, cty]) => {
@@ -88,6 +89,8 @@ export function preprocessDXCCData (dxccCSV) {
     }
 
     if (ExtraInfo[code]) dxcc[code] = { ...dxcc[code], ...ExtraInfo[code] } // Extra info should override
+
+    if (ITUZonesToRegions[dxcc[code].ituZones?.[0]]) dxcc[code].ituRegion = ITUZonesToRegions[dxcc[code].ituZones[0]]
   })
 
   return dxcc
