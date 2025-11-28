@@ -1,8 +1,7 @@
 import { preprocessDXCCData } from './preprocessing'
 import fs from 'fs'
 
-/* eslint-disable n/handle-callback-err */
-const dxccCSV = fs.readFileSync('data/dxcc-2020-02.csv', 'utf8', (err, data) => data)
+const dxccCSV = fs.readFileSync('data/dxcc-2020-02.csv', 'utf8')
 
 describe('preprocessDXCCData', () => {
   it('should work', () => {
@@ -13,14 +12,14 @@ describe('preprocessDXCCData', () => {
     expect(dxcc[1].fullName).toEqual('Canada')
     expect(dxcc[1].name).toEqual('Canada')
     expect(dxcc[1].shortName).toEqual('Canada')
-    expect(dxcc[1].clublogName).toEqual('CANADA')
+    expect(dxcc[1].lotwName).toEqual('CANADA')
     expect(dxcc[1].ituRegion).toEqual(2)
 
     expect(dxcc[291].dxccName).toEqual('United States of America')
     expect(dxcc[291].fullName).toEqual('United States of America')
     expect(dxcc[291].name).toEqual('United States')
     expect(dxcc[291].shortName).toEqual('USA')
-    expect(dxcc[291].clublogName).toEqual('UNITED STATES OF AMERICA')
+    expect(dxcc[291].lotwName).toEqual('UNITED STATES OF AMERICA')
     expect(dxcc[291].ituRegion).toEqual(2)
 
     // Automatic replacement of some abbreviations
@@ -28,7 +27,7 @@ describe('preprocessDXCCData', () => {
     expect(dxcc[460].fullName).toEqual('Rotuma Island')
     expect(dxcc[460].name).toEqual('Rotuma I.')
     expect(dxcc[460].shortName).toEqual('Rotuma I.')
-    expect(dxcc[460].clublogName).toEqual('ROTUMA ISLAND')
+    expect(dxcc[460].lotwName).toEqual('ROTUMA ISLAND')
     expect(dxcc[460].ituRegion).toEqual(3)
 
     // Overrides from extra-info.json
@@ -36,7 +35,7 @@ describe('preprocessDXCCData', () => {
     expect(dxcc[502].fullName).toEqual('Republic of North Macedonia')
     expect(dxcc[502].name).toEqual('North Macedonia')
     expect(dxcc[502].shortName).toEqual('N. Macedonia')
-    expect(dxcc[502].clublogName).toEqual('NORTH MACEDONIA')
+    expect(dxcc[502].lotwName).toEqual('NORTH MACEDONIA')
     expect(dxcc[502].ituRegion).toEqual(1)
 
     // Both expansion of abbreviations and overrides
@@ -44,7 +43,7 @@ describe('preprocessDXCCData', () => {
     expect(dxcc[117].fullName).toEqual('International Telecommunications Union Headquarters')
     expect(dxcc[117].name).toEqual('ITU Headquarters')
     expect(dxcc[117].shortName).toEqual('ITU HQ')
-    expect(dxcc[117].clublogName).toEqual('ITU HQ')
+    expect(dxcc[117].lotwName).toEqual('ITU HQ')
     expect(dxcc[117].ituRegion).toEqual(1)
 
     // Some entities have different names on LoTW and ClubLog
@@ -72,3 +71,4 @@ describe('preprocessDXCCData', () => {
     expect(dxcc[259].ituRegion).toEqual(1)
   })
 })
+

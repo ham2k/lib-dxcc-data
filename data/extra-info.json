@@ -4,8 +4,7 @@
     "fullName": "Agalega and Saint Brandon Islands",
     "name": "Agalega and Saint Brandon Is.",
     "shortName": "Agalega & St. Brandon",
-    "lotwName": "AGALEGA & SAINT BRANDON ISLANDS",
-    "clublogName": "AGALEGA & SAINT BRANDON ISLANDS"
+    "lotwName": "AGALEGA & SAINT BRANDON ISLANDS"
   },
   "16": {
     "name": "New Zealand Subantarctic Is.",
@@ -20,23 +19,20 @@
     "dxccName": "C. Kiribati (British Phoenix Is.)",
     "name": "Central Kiribati",
     "shortName": "C. Kiribati",
-    "lotwName": "CENTRAL KIRIBATI",
-    "clublogName": "CENTRAL KIRIBATI"
+    "lotwName": "CENTRAL KIRIBATI"
   },
   "48": {
     "dxccName": "E. Kiribati (Line Is.)",
     "name": "Eastern Kiribati",
     "shortName": "E. Kiribati",
-    "lotwName": "EASTERN KIRIBATI",
-    "clublogName": "EASTERN KIRIBATI"
+    "lotwName": "EASTERN KIRIBATI"
   },
   "117": {
     "fullName": "International Telecommunications Union Headquarters",
     "name": "ITU Headquarters",
     "dxccName": "ITU HQ",
     "shortName": "ITU HQ",
-    "lotwName": "ITU HQ",
-    "clublogName": "ITU HQ"
+    "lotwName": "ITU HQ"
   },
   "137": {
     "shortName": "South Korea"
@@ -49,11 +45,13 @@
     "shortName": "St. Martin"
   },
   "217": {
-    "alternate": "Desventuradas Islands",
     "name": "San Felix Is.",
     "fullName": "San Felix Islands",
     "lotwName": "SAN FELIX ISLAND",
-    "clublogName": "SAN FELIX ISLANDS"
+    "clublogName": "SAN FELIX ISLANDS",
+    "otherNames": [
+      "Desventuradas Islands"
+    ]
   },
   "230": {
     "shortName": "Germany"
@@ -84,8 +82,7 @@
     "dxccName": "W. Kiribati (Gilbert Is. )",
     "name": "Western Kiribati",
     "shortName": "W. Kiribati",
-    "lotwName": "WESTERN KIRIBATI",
-    "clublogName": "WESTERN KIRIBATI"
+    "lotwName": "WESTERN KIRIBATI"
   },
   "344": {
     "shortName": "North Korea",
@@ -100,22 +97,22 @@
     "shortName": "DR Congo-Kinshasa"
   },
   "468": {
-    "otherNames": ["Swaziland"]
+    "otherNames": [
+      "Swaziland"
+    ]
   },
   "490": {
     "dxccName": "Banaba I. (Ocean I.)",
     "fullName": "Banaba Island (Ocean Island)",
     "name": "Banaba I.",
     "shortName": "Banaba I.",
-    "lotwName": "BANABA ISLAND",
-    "clublogName": "BANABA ISLAND"
+    "lotwName": "BANABA ISLAND"
   },
   "502": {
     "dxccName": "North Macedonia (Republic of)",
     "name": "North Macedonia",
     "fullName": "Republic of North Macedonia",
     "shortName": "N. Macedonia",
-    "clublogName": "NORTH MACEDONIA",
     "lotwName": "NORTH MACEDONIA"
   },
   "504": {

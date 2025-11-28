@@ -1,32 +1,50 @@
-// const { parse } = require("csv/dist/cjs/sync.cjs") // Use this line when running tests
-import { parse } from 'csv/sync' // Use this line normally
-
+import { parse } from 'csv/sync'
 import { BIGCTY } from '@ham2k/lib-country-files'
+import { createRequire } from 'node:module'
+import type { DXCCEntity } from './DXCCEntity.js'
 
-import { createRequire } from "node:module"
 const require = createRequire(import.meta.url)
-const QRZNames = require('../../data/qrz-names.json')
-const ExtraInfo = require('../../data/extra-info.json')
-const ITUZonesToRegions = require('../../data/itu-zones-to-regions.json')
+const QRZNames: Record<number, string> = require('../../data/qrz-names.json')
+const ExtraInfo: Record<number, Partial<DXCCEntity>> = require('../../data/extra-info.json')
+const ITUZonesToRegions: Record<number, number> = require('../../data/itu-zones-to-regions.json')
 
-const CTYbyCode = {}
-Object.entries(BIGCTY.entities).forEach(([prefix, cty]) => {
+interface CSVRecord {
+  prefix: string
+  name: string
+  continent: string
+  itu: string
+  cq: string
+  entityCode: string
+  deleted: string
+  outgoingQslService: string
+  thirdPartyTraffic: string
+  validStart: string
+  validEnd: string
+  notes: string
+  countryCode: string
+  flag: string
+  prefixRegex: string
+}
+
+const CTYbyCode: Record<number, any> = {}
+Object.entries(BIGCTY.entities).forEach(([prefix, cty]: [string, any]) => {
   if (!cty.isWAE) CTYbyCode[cty.dxccCode] = cty
 })
 
-export function preprocessDXCCData (dxccCSV) {
-  const dxcc = {}
+export function preprocessDXCCData(dxccCSV: string): Record<number, DXCCEntity> {
+  const dxcc: Record<number, DXCCEntity> = {}
 
-  const records = parse(dxccCSV, { columns: true, skip_empty_lines: true })
+  const records = parse(dxccCSV, { columns: true, skip_empty_lines: true }) as CSVRecord[]
   console.log(`${records.length} records`)
+
   records.forEach((record) => {
-    // console.log(record)
     const code = Number.parseInt(record.entityCode)
     if (dxcc[code]) {
       console.log('Duplicate entity code', code)
       console.log(dxcc[code])
       console.log(record)
     }
+
     dxcc[code] = {
       source: 'DXCC',
       dxccName: record.name,
@@ -41,8 +59,14 @@ export function preprocessDXCCData (dxccCSV) {
       flag: record.flag,
       countryCode: record.countryCode === 'ZZ' ? '' : record.countryCode.toLowerCase(),
       notes: record.notes,
-      regex: record.regex,
-      prefixes: record.prefix.split(',')
+      regex: record.prefixRegex,
+      prefixes: record.prefix.split(','),
+      entityPrefix: '',
+      shortName: '',
+      name: '',
+      fullName: '',
+      lotwName: '',
+      ituRegion: 0
     }
 
     dxcc[code].entityPrefix = dxcc[code].prefixes[0] || `${record.deleted === 'Y' ? 'deleted' : 'dxcc'}-${code}`
@@ -84,13 +108,27 @@ export function preprocessDXCCData (dxccCSV) {
     if (QRZNames[code] !== record.name) dxcc[code].qrzName = QRZNames[code]
 
     if (CTYbyCode[code]) {
-      dxcc[code] = { ...CTYbyCode[code], ...dxcc[code] } // CTY info should not override
-      dxcc[code].entityPrefix = CTYbyCode[code].entityPrefix // except for entityPrefix, for which we trust CTY over other sources
+      const ctyData = { ...CTYbyCode[code] }
+      // TODO: Fix this in CTY Data instead of here
+      if (ctyData.alternate) {
+        ctyData.otherNames = [ctyData.alternate]
+        delete ctyData.alternate
+      }
+      if (ctyData.continent) {
+        ctyData.continents = ctyData.continent.split(',')
+        delete ctyData.continent
+      }
+      dxcc[code] = { ...ctyData, ...dxcc[code] } // CTY info should not override
+      dxcc[code].entityPrefix = ctyData.entityPrefix // except for entityPrefix, for which we trust CTY over other sources
     }
 
     if (ExtraInfo[code]) dxcc[code] = { ...dxcc[code], ...ExtraInfo[code] } // Extra info should override
 
-    if (ITUZonesToRegions[dxcc[code].ituZones?.[0]]) dxcc[code].ituRegion = ITUZonesToRegions[dxcc[code].ituZones[0]]
+    if (ITUZonesToRegions[dxcc[code].ituZones?.[0]]) {
+      dxcc[code].ituRegion = ITUZonesToRegions[dxcc[code].ituZones[0]]
+    } else {
+      dxcc[code].ituRegion = 0
+    }
   })
 
   return dxcc
